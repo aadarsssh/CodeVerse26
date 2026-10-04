@@ -1,0 +1,41 @@
+{
+  "event_title": "CodeVerse Hackathon 2026",
+  "edition": "2026",
+  "min_members": 4,
+  "max_members": 6,
+  "fee_type": "per_member",
+  "fee_per_member": 150,
+  "flat_team_fee": 600,
+  "currency": "INR",
+  "currency_symbol": "₹",
+  "fee_description": "Registration fee is ₹150 per member (₹600 for 4 members, ₹750 for 5 members, ₹900 for 6 members) to cover event kit, meals, and participation certificates.",
+  "tracks": [
+    "AI & Intelligent Systems",
+    "Web3 & Decentralized Apps",
+    "FinTech & Cybersecurity",
+    "Smart Cities & IoT",
+    "Healthcare & BioTech",
+    "Open Innovation"
+  ],
+  "payment_methods": {
+    "bank": {
+      "account_holder": "CODEVERSE HACKATHON 2026",
+      "bank_name": "State Bank of India",
+      "account_number": "418902839410",
+      "ifsc": "SBIN0004821",
+      "branch": "University Campus Branch",
+      "account_type": "Current Account"
+    },
+    "upi": {
+      "upi_id": "codeverse2026@sbi",
+      "merchant_name": "CodeVerse Hackathon 2026",
+      "qr_code_svg": "assets/qr-code.svg"
+    }
+  },
+  "support": {
+    "email": "helpdesk@codeverse2026.org",
+    "discord": "https://discord.gg/codeverse2026",
+    "phone": "+91 98765 43210"
+  },
+  "max_upload_size_mb": 5
+}

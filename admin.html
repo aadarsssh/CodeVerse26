@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeVerse Hackathon 2026 - Admin Portal</title>
+  <meta name="description" content="Admin Dashboard for CodeVerse Hackathon 2026 to review team registrations, inspect payment proofs, and verify transactions.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+  <style>
+    .admin-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      box-shadow: var(--shadow-sm);
+    }
+    .stat-card .label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .stat-card .value {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #fff;
+    }
+    .stat-card.pending .value { color: var(--warning); }
+    .stat-card.verified .value { color: var(--success); }
+    .stat-card.rejected .value { color: var(--danger); }
+    .stat-card.amount .value { color: var(--accent-cyan); }
+
+    .admin-controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+    .search-input-box {
+      flex: 1;
+      min-width: 260px;
+      position: relative;
+    }
+    .filter-tabs {
+      display: flex;
+      gap: 6px;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 4px;
+      border-radius: var(--radius-sm);
+    }
+    .filter-tab {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+    .filter-tab.active {
+      background: var(--primary);
+      color: #fff;
+    }
+    .teams-list-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+    .admin-team-row {
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 18px 20px;
+      transition: var(--transition-fast);
+    }
+    .admin-team-row:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .team-main-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .team-info-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .team-name-title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sub-meta {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .payment-meta-badge {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+      font-size: 0.82rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 170px;
+    }
+    .action-button-group {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .btn-sm {
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: var(--transition-fast);
+    }
+    .btn-verify {
+      background: var(--success);
+      color: #fff;
+    }
+    .btn-verify:hover {
+      filter: brightness(1.1);
+    }
+    .btn-reject {
+      background: transparent;
+      border-color: var(--danger-border);
+      color: var(--danger);
+    }
+    .btn-reject:hover {
+      background: var(--danger-bg);
+      border-color: var(--danger);
+    }
+    .members-drawer {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--border-subtle);
+      display: none;
+    }
+    .members-drawer.open {
+      display: block;
+    }
+    .proof-thumbnail-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: var(--accent-cyan);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .proof-thumbnail-btn:hover {
+      background: rgba(6, 182, 212, 0.12);
+      border-color: var(--accent-cyan);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="header-nav">
+    <div class="nav-container">
+      <a href="index.html" class="brand-badge">
+        <div class="brand-logo-icon">CV</div>
+        <div>
+          <h1 class="brand-title">CodeVerse Hackathon 2026</h1>
+          <div class="brand-subtitle">Organizer & Admin Dashboard</div>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-pill">← Student Portal</a>
+        <button type="button" class="btn btn-secondary btn-sm" id="btn-export-csv">📥 Export CSV</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-wrapper" style="max-width: 1040px; margin-top: 24px;">
+    <!-- Stats Cards -->
+    <div class="admin-stats-grid">
+      <div class="stat-card">
+        <span class="label">Total Teams</span>
+        <span class="value" id="stat-total">0</span>
+      </div>
+      <div class="stat-card pending">
+        <span class="label">Pending Verification</span>
+        <span class="value" id="stat-pending">0</span>
+      </div>
+      <div class="stat-card verified">
+        <span class="label">Verified Teams</span>
+        <span class="value" id="stat-verified">0</span>
+      </div>
+      <div class="stat-card rejected">
+        <span class="label">Rejected Payments</span>
+        <span class="value" id="stat-rejected">0</span>
+      </div>
+      <div class="stat-card amount">
+        <span class="label">Total Fees</span>
+        <span class="value" id="stat-amount">₹0</span>
+      </div>
+    </div>
+
+    <!-- Search & Filter Bar -->
+    <div class="admin-controls">
+      <div class="search-input-box">
+        <input type="text" id="admin-search-input" placeholder="🔍 Search by Team, Leader, Reg ID, or UTR number..." />
+      </div>
+      <div class="filter-tabs">
+        <button type="button" class="filter-tab active" data-filter="ALL">All</button>
+        <button type="button" class="filter-tab" data-filter="VERIFICATION_PENDING">Pending (UTR submitted)</button>
+        <button type="button" class="filter-tab" data-filter="CONFIRMED">Verified</button>
+        <button type="button" class="filter-tab" data-filter="PAYMENT_REJECTED">Rejected</button>
+        <button type="button" class="filter-tab" data-filter="PAYMENT_PENDING">Payment Pending</button>
+      </div>
+    </div>
+
+    <!-- Teams List Table / Container -->
+    <div class="teams-list-card" id="admin-teams-container">
+      <div style="padding: 40px; text-align: center; color: var(--text-muted);">
+        Loading team registrations...
+      </div>
+    </div>
+  </main>
+
+  <!-- Payment Proof Modal -->
+  <div class="modal-overlay" id="proof-modal" aria-hidden="true">
+    <div class="modal-container" style="max-width: 640px;">
+      <div class="card-header" style="margin-bottom: 14px;">
+        <h3 class="card-title">Payment Screenshot Proof</h3>
+        <button type="button" class="btn-sm" id="btn-close-proof-modal" style="background: transparent; color: #fff; font-size: 1.2rem;">✕</button>
+      </div>
+      <div id="proof-modal-content" style="text-align: center; min-height: 250px; display: flex; align-items: center; justify-content: center; background: #000; border-radius: var(--radius-sm); overflow: hidden;">
+        <!-- Proof image or pdf iframe injected here -->
+      </div>
+      <div style="margin-top: 14px; display: flex; justify-content: space-between; align-items: center;">
+        <span id="proof-modal-caption" style="font-size: 0.85rem; color: var(--text-secondary);"></span>
+        <a id="proof-modal-download" href="#" target="_blank" class="btn btn-secondary btn-sm" download>Download File</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rejection Reason Modal -->
+  <div class="modal-overlay" id="reject-modal" aria-hidden="true">
+    <div class="modal-container">
+      <div class="card-header" style="margin-bottom: 14px;">
+        <h3 class="card-title" style="color: var(--danger);">Reject Payment Verification</h3>
+        <button type="button" class="btn-sm" id="btn-close-reject-modal" style="background: transparent; color: #fff; font-size: 1.2rem;">✕</button>
+      </div>
+      <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 14px;">
+        Provide a clear reason for rejecting the payment for team <b id="reject-modal-team-name" style="color:#fff;"></b>. The student will be prompted to re-enter their transaction details.
+      </p>
+      <div class="form-group" style="margin-bottom: 16px;">
+        <label for="reject-remarks">Reason for Rejection <span class="req">*</span></label>
+        <textarea id="reject-remarks" rows="3" placeholder="e.g. UTR number not found in bank statement, amount paid is less than required fee..."></textarea>
+      </div>
+      <div style="display: flex; justify-content: flex-end; gap: 10px;">
+        <button type="button" class="btn btn-secondary btn-sm" id="btn-cancel-reject">Cancel</button>
+        <button type="button" class="btn btn-danger btn-sm" id="btn-confirm-reject">Confirm Rejection</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="admin-toast-container" style="position: fixed; bottom: 30px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 8px;"></div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

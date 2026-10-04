@@ -1,0 +1,15 @@
+# SQLite database
+*.db
+*.sqlite3
+
+# Uploaded payment proofs
+uploads/*
+!uploads/.gitkeep
+
+# Python cache
+__pycache__/
+*.pyc
+
+# OS generated files
+.DS_Store
+Thumbs.db

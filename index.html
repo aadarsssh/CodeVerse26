@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeVerse Hackathon 2026</title>
+  <meta name="description" content="Register your team for CodeVerse Hackathon 2026. Minimum 4 to maximum 6 members. Fast UPI and bank transfer verification.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="header-nav">
+    <div class="nav-container">
+      <a href="#/" class="brand-badge" id="brand-home-link">
+        <div class="brand-logo-icon">CV</div>
+        <div>
+          <h1 class="brand-title">CodeVerse Hackathon 2026</h1>
+          <div class="brand-subtitle">Team Registration & Payment Portal</div>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="#/status" class="nav-pill" id="nav-track-status">Track Status</a>
+        <a href="admin.html" class="admin-tag" id="nav-admin-link">Admin Portal</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-wrapper" id="app-container">
+    <!-- Progress Stepper -->
+    <nav class="stepper" aria-label="Registration Progress" id="registration-stepper">
+      <div class="step-node active" id="step-node-1" data-step="1">
+        <div class="step-circle">1</div>
+        <span class="step-label">Team & Leader</span>
+      </div>
+      <div class="step-divider" id="divider-1"></div>
+      <div class="step-node" id="step-node-2" data-step="2">
+        <div class="step-circle">2</div>
+        <span class="step-label">Members (4-6)</span>
+      </div>
+      <div class="step-divider" id="divider-2"></div>
+      <div class="step-node" id="step-node-3" data-step="3">
+        <div class="step-circle">3</div>
+        <span class="step-label">Review</span>
+      </div>
+      <div class="step-divider" id="divider-3"></div>
+      <div class="step-node" id="step-node-4" data-step="4">
+        <div class="step-circle">4</div>
+        <span class="step-label">Payment</span>
+      </div>
+      <div class="step-divider" id="divider-4"></div>
+      <div class="step-node" id="step-node-5" data-step="5">
+        <div class="step-circle">5</div>
+        <span class="step-label">Submit Proof</span>
+      </div>
+      <div class="step-divider" id="divider-5"></div>
+      <div class="step-node" id="step-node-6" data-step="6">
+        <div class="step-circle">✓</div>
+        <span class="step-label">Done</span>
+      </div>
+    </nav>
+
+    <!-- Dynamic Screen Content Container -->
+    <div id="screen-mount"></div>
+  </main>
+
+  <!-- Sticky Bottom Navigation Bar -->
+  <aside class="bottom-bar" id="sticky-bottom-bar" style="display: none;">
+    <div class="bottom-bar-content">
+      <div class="bottom-bar-info">
+        <span class="caption" id="bar-caption">Step 1 of 5</span>
+        <span class="summary" id="bar-summary">Team & Leader Details</span>
+      </div>
+      <div class="bottom-bar-actions">
+        <button type="button" class="btn btn-secondary" id="btn-bar-prev" style="display: none;">
+          ← Back
+        </button>
+        <button type="button" class="btn btn-primary" id="btn-bar-next">
+          Next Step →
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" style="position: fixed; bottom: 80px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 8px;"></div>
+
+  <!-- Application Logic -->
+  <script src="app.js"></script>
+</body>
+</html>

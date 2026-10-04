@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" width="320" height="320">
+  <defs>
+    <linearGradient id="qrGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4F46E5"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+  <!-- Background Card -->
+  <rect width="320" height="320" rx="16" fill="#FFFFFF"/>
+  <rect x="12" y="12" width="296" height="296" rx="12" fill="none" stroke="#E2E8F0" stroke-width="2"/>
+  
+  <!-- Corner Position Finder 1 (Top-Left) -->
+  <rect x="28" y="28" width="56" height="56" rx="8" fill="#0F172A"/>
+  <rect x="36" y="36" width="40" height="40" rx="4" fill="#FFFFFF"/>
+  <rect x="44" y="44" width="24" height="24" rx="3" fill="url(#qrGrad)"/>
+  
+  <!-- Corner Position Finder 2 (Top-Right) -->
+  <rect x="236" y="28" width="56" height="56" rx="8" fill="#0F172A"/>
+  <rect x="244" y="36" width="40" height="40" rx="4" fill="#FFFFFF"/>
+  <rect x="252" y="44" width="24" height="24" rx="3" fill="url(#qrGrad)"/>
+
+  <!-- Corner Position Finder 3 (Bottom-Left) -->
+  <rect x="28" y="236" width="56" height="56" rx="8" fill="#0F172A"/>
+  <rect x="36" y="244" width="40" height="40" rx="4" fill="#FFFFFF"/>
+  <rect x="44" y="252" width="24" height="24" rx="3" fill="url(#qrGrad)"/>
+
+  <!-- Simulated QR Data Grid -->
+  <g fill="#0F172A">
+    <!-- Row 1 modules -->
+    <rect x="96" y="32" width="10" height="10" rx="2"/>
+    <rect x="114" y="32" width="10" height="10" rx="2"/>
+    <rect x="132" y="32" width="10" height="10" rx="2"/>
+    <rect x="168" y="32" width="10" height="10" rx="2"/>
+    <rect x="186" y="32" width="10" height="10" rx="2"/>
+    <rect x="214" y="32" width="10" height="10" rx="2"/>
+
+    <!-- Row 2 modules -->
+    <rect x="96" y="50" width="10" height="10" rx="2"/>
+    <rect x="140" y="50" width="10" height="10" rx="2"/>
+    <rect x="158" y="50" width="10" height="10" rx="2"/>
+    <rect x="194" y="50" width="10" height="10" rx="2"/>
+
+    <!-- Row 3 modules -->
+    <rect x="114" y="68" width="10" height="10" rx="2"/>
+    <rect x="132" y="68" width="10" height="10" rx="2"/>
+    <rect x="176" y="68" width="10" height="10" rx="2"/>
+    <rect x="204" y="68" width="10" height="10" rx="2"/>
+
+    <!-- Middle Data Rows -->
+    <rect x="32" y="96" width="10" height="10" rx="2"/>
+    <rect x="50" y="96" width="10" height="10" rx="2"/>
+    <rect x="68" y="96" width="10" height="10" rx="2"/>
+    <rect x="96" y="96" width="10" height="10" rx="2"/>
+    <rect x="122" y="96" width="10" height="10" rx="2"/>
+    <rect x="150" y="96" width="10" height="10" rx="2"/>
+    <rect x="186" y="96" width="10" height="10" rx="2"/>
+    <rect x="222" y="96" width="10" height="10" rx="2"/>
+    <rect x="240" y="96" width="10" height="10" rx="2"/>
+    <rect x="268" y="96" width="10" height="10" rx="2"/>
+
+    <rect x="32" y="114" width="10" height="10" rx="2"/>
+    <rect x="68" y="114" width="10" height="10" rx="2"/>
+    <rect x="104" y="114" width="10" height="10" rx="2"/>
+    <rect x="132" y="114" width="10" height="10" rx="2"/>
+    <rect x="168" y="114" width="10" height="10" rx="2"/>
+    <rect x="204" y="114" width="10" height="10" rx="2"/>
+    <rect x="240" y="114" width="10" height="10" rx="2"/>
+    <rect x="276" y="114" width="10" height="10" rx="2"/>
+
+    <!-- Timing Patterns -->
+    <rect x="32" y="132" width="10" height="10" rx="2"/>
+    <rect x="50" y="132" width="10" height="10" rx="2"/>
+    <rect x="86" y="132" width="10" height="10" rx="2"/>
+    <rect x="104" y="132" width="10" height="10" rx="2"/>
+    <rect x="214" y="132" width="10" height="10" rx="2"/>
+    <rect x="250" y="132" width="10" height="10" rx="2"/>
+
+    <!-- Center Logo Shield -->
+    <rect x="120" y="120" width="80" height="80" rx="12" fill="#0F172A"/>
+    <rect x="124" y="124" width="72" height="72" rx="8" fill="#1E293B"/>
+    <text x="160" y="152" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="16" fill="#38BDF8">UPI</text>
+    <text x="160" y="172" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="9" fill="#F8FAFC">CODEVERSE</text>
+    <text x="160" y="184" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="600" font-size="8" fill="#94A3B8">2026</text>
+
+    <!-- Lower rows -->
+    <rect x="32" y="186" width="10" height="10" rx="2"/>
+    <rect x="68" y="186" width="10" height="10" rx="2"/>
+    <rect x="86" y="186" width="10" height="10" rx="2"/>
+    <rect x="214" y="186" width="10" height="10" rx="2"/>
+    <rect x="250" y="186" width="10" height="10" rx="2"/>
+    <rect x="276" y="186" width="10" height="10" rx="2"/>
+
+    <rect x="32" y="204" width="10" height="10" rx="2"/>
+    <rect x="50" y="204" width="10" height="10" rx="2"/>
+    <rect x="96" y="204" width="10" height="10" rx="2"/>
+    <rect x="122" y="204" width="10" height="10" rx="2"/>
+    <rect x="160" y="204" width="10" height="10" rx="2"/>
+    <rect x="186" y="204" width="10" height="10" rx="2"/>
+    <rect x="222" y="204" width="10" height="10" rx="2"/>
+    <rect x="258" y="204" width="10" height="10" rx="2"/>
+
+    <!-- Bottom Right alignment & data -->
+    <rect x="96" y="236" width="10" height="10" rx="2"/>
+    <rect x="122" y="236" width="10" height="10" rx="2"/>
+    <rect x="150" y="236" width="10" height="10" rx="2"/>
+    <rect x="176" y="236" width="10" height="10" rx="2"/>
+    <rect x="204" y="236" width="24" height="24" rx="4" fill="url(#qrGrad)"/>
+    <rect x="240" y="236" width="10" height="10" rx="2"/>
+    <rect x="268" y="236" width="10" height="10" rx="2"/>
+
+    <rect x="96" y="254" width="10" height="10" rx="2"/>
+    <rect x="132" y="254" width="10" height="10" rx="2"/>
+    <rect x="168" y="254" width="10" height="10" rx="2"/>
+    <rect x="240" y="254" width="10" height="10" rx="2"/>
+    <rect x="276" y="254" width="10" height="10" rx="2"/>
+
+    <rect x="96" y="272" width="10" height="10" rx="2"/>
+    <rect x="114" y="272" width="10" height="10" rx="2"/>
+    <rect x="150" y="272" width="10" height="10" rx="2"/>
+    <rect x="186" y="272" width="10" height="10" rx="2"/>
+    <rect x="222" y="272" width="10" height="10" rx="2"/>
+    <rect x="250" y="272" width="10" height="10" rx="2"/>
+    <rect x="276" y="272" width="10" height="10" rx="2"/>
+  </g>
+</svg>
